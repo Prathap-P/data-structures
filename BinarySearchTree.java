@@ -4,10 +4,10 @@ import java.util.*;
 
 public class BinarySearchTree{
 	
-	public class Node{
+	public static class Node{
 		int key;
-		Node left_BST;
-		Node right_BST;
+		public Node left_BST;
+		public Node right_BST;
 		
 		Node(int key){
 			this.key= key;
@@ -16,7 +16,7 @@ public class BinarySearchTree{
 		}
 	}
 	
-	Node start;
+	public Node start;
 	int length;
 
 	public BinarySearchTree(){
@@ -38,6 +38,29 @@ public class BinarySearchTree{
 	
 	public void inOrderPrint(){
 		Print(this.start, 2);
+	}
+
+
+	public void sidewiseInOrder(){
+		sidewisePrint(this.start, 1);
+	}
+
+	private void sidewisePrint(Node node, int level){
+		if(node == null)
+			return;
+		//call for left
+		sidewisePrint(node.right_BST, level+1);
+		
+		//PrintNode
+		for(int i= 0;i< level-1;i++){
+			System.out.print("\t");
+		}
+		System.out.print("(" + level + ") ");
+		System.out.print(node.key);
+		System.out.println();
+		
+		//call for right
+		sidewisePrint(node.left_BST, level+1);
 	}
 
 
@@ -193,6 +216,3 @@ public class BinarySearchTree{
 	}
 	
 }
-
-
-
